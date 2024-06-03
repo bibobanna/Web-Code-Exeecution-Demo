@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Tester</title>
+    <style>
+        .result { font-weight: bold; }
+        .pass { color: green; }
+        .fail { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Code Tester</h2>
+    <div>
+        <h4>Enter your code:</h4>
+        <textarea id="codeInput" rows="10" cols="50">function printFirstLetters(phrase) {
+    // Your code here
+    console.log(phrase.split(' ').map(word => word.charAt(0)).join(''));
+}</textarea>
+    </div>
+    <div>
+        <h4>Enter test cases (phrase|expected output):</h4>
+        <textarea id="testCases" rows="5" cols="50">Hello World|HW
+Hi Bye|HB</textarea>
+    </div>
+    <button onclick="runTests()">Run Tests</button>
+    <div id="resultContainer"></div>
+
+    <script>
+        function runTests() {
+            console.log("Sending request to /run_tests");
+
+            const code = document.getElementById('codeInput').value;
+            const testCases = document.getElementById('testCases').value;
+
+            // Example of sending the code and test cases to the server
+            console.log("Frontend:");
+            console.log(code); // Should show the code from the textarea
+            console.log(testCases); // Should show the test cases from the textarea
+
+            fetch('/run_tests', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code, testCases })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultContainer = document.getElementById('resultContainer');
+                resultContainer.innerHTML = ''; // Clear previous results
+                data.results.forEach(result => {
+                    const resultElement = document.createElement('div');
+                    resultElement.classList.add('result', result.pass ? 'pass' : 'fail');
+                    resultElement.textContent = result.message;
+                    resultContainer.appendChild(resultElement);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

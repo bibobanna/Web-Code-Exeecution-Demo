@@ -35,9 +35,11 @@ This file contains the back-end server code using Express.js. It serves the stat
 Enter your code in the "Enter your code" textarea. For example:
 
 javascript:
-'''function printFirstLetters(phrase) {
+```
+function printFirstLetters(phrase) {
     console.log(phrase.split(' ').map(word => word.charAt(0)).join(''));
-}'''
+}```
+
 Enter your test cases in the "Enter test cases" textarea. Each test case should be on a new line in the format input|expected output. For example:
 
 

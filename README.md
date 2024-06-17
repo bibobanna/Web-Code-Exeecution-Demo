@@ -38,9 +38,10 @@ javascript:
 ```
 function printFirstLetters(phrase) {
     console.log(phrase.split(' ').map(word => word.charAt(0)).join(''));
-}```
+}
+```
 
-Enter your test cases in the "Enter test cases" textarea. Each test case should be on a new line in the format input|expected output. For example:
+Enter your test cases in the "Enter test cases" textarea. Each test case should be on a new line in the format input|expected output.
 
 
 
